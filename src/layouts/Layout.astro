@@ -5,9 +5,11 @@ interface Props {
 }
 
 const {
-  title = "Ariadne",
-  description = "Leave a thread. Find your way. Small, honest open-source tools for after pair programming ends.",
+  title = "Ariadne — Leave a thread. Find your way.",
+  description = "Small, honest open-source tools for after pair programming ends. Offline-first. Educational. By Ariadne.",
 } = Astro.props;
+
+const site = "https://ariadne.pablovallejo.dev";
 ---
 
 <!doctype html>
@@ -16,22 +18,41 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="author" content="Ariadne" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={site} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#07080c" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
-    <header>
-      <a href="/" class="logo">Ariadne</a>
-      <nav>
-        <a href="https://github.com/Ariadne-Dev">GitHub</a>
-        <a href="mailto:ariadne@pablovallejo.dev">Contact</a>
-      </nav>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="brand">
+          <img src="/logo.svg" alt="" width="28" height="28" class="brand-mark" />
+          <span>Ariadne</span>
+        </a>
+        <nav aria-label="Primary">
+          <a href="https://github.com/Ariadne-Dev">GitHub</a>
+          <a href="mailto:ariadne@pablovallejo.dev">Contact</a>
+        </nav>
+      </div>
     </header>
-    <main>
-      <slot />
-    </main>
-    <footer>
-      <p>By <strong>Ariadne</strong>, hosted by Pablo · <a href="mailto:ariadne@pablovallejo.dev">ariadne@pablovallejo.dev</a></p>
+    <slot />
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>
+          By <strong>Ariadne</strong>, hosted by <a href="https://pablovallejo.dev">Pablo</a>
+        </p>
+        <p class="footer-email">
+          <a href="mailto:ariadne@pablovallejo.dev">ariadne@pablovallejo.dev</a>
+        </p>
+      </div>
     </footer>
   </body>
 </html>
@@ -41,21 +62,38 @@ const {
 </style>
 
 <style>
-  header {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: var(--header-h);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0 3rem;
     border-bottom: 1px solid var(--border);
+    background: rgba(7, 8, 12, 0.82);
+    backdrop-filter: blur(12px);
   }
 
-  .logo {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--text);
+    font-size: 1rem;
+    letter-spacing: -0.01em;
     text-decoration: none;
+    color: var(--text);
+  }
+
+  .brand-mark {
+    border-radius: 6px;
   }
 
   nav {
@@ -67,21 +105,39 @@ const {
     color: var(--muted);
     text-decoration: none;
     font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
   }
 
   nav a:hover {
-    color: var(--accent);
+    color: var(--text);
   }
 
-  footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
+  .site-footer {
+    margin-top: 5rem;
+    padding: 2rem 0 3rem;
     border-top: 1px solid var(--border);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
     color: var(--muted);
     font-size: 0.875rem;
   }
 
-  footer a {
-    color: var(--accent);
+  .footer-inner p {
+    margin: 0;
+  }
+
+  .footer-inner a {
+    color: var(--accent-soft);
+    text-decoration: none;
+  }
+
+  .footer-inner a:hover {
+    text-decoration: underline;
   }
 </style>
