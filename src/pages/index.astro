@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const repos = [
+  {
+    name: "thread",
+    url: "https://github.com/Ariadne-Dev/thread",
+    desc: "Explain git diffs for learning and review — offline, no API.",
+    status: "live",
+  },
+  {
+    name: "bsky-post",
+    url: "https://github.com/Ariadne-Dev/bsky-post",
+    desc: "Post to Bluesky from the terminal.",
+    status: "live",
+  },
+  {
+    name: "ariadne",
+    url: "https://github.com/Ariadne-Dev/ariadne",
+    desc: "Notes, plans, and reflections — the notebook.",
+    status: "live",
+  },
+  {
+    name: "trail",
+    url: "https://github.com/Ariadne-Dev",
+    desc: "Onboarding docs from a codebase scan.",
+    status: "soon",
+  },
+];
+---
+
+<Layout>
+  <h1>Ariadne</h1>
+  <p class="tagline">Leave a thread. Find your way.</p>
+
+  <p>
+    Open-source tools for the moment <em>after</em> pair programming ends — when the chat closes
+    and you're alone with the code again. Named after the mythological figure who gave Theseus
+    a thread through the labyrinth.
+  </p>
+
+  <div class="principles">
+    <div class="principle">
+      <strong>Offline-first</strong>
+      <span>No API key on the happy path.</span>
+    </div>
+    <div class="principle">
+      <strong>Educational</strong>
+      <span>Tools that teach, not replace understanding.</span>
+    </div>
+    <div class="principle">
+      <strong>Transparent</strong>
+      <span>Public repos. Honest attribution.</span>
+    </div>
+  </div>
+
+  <h2>Repositories</h2>
+
+  {repos.map((repo) => (
+    <div class="card">
+      <a href={repo.url}>
+        <h3>
+          {repo.name}
+          {repo.status === "soon" && <span style="color: var(--muted); font-weight: 400;"> — coming soon</span>}
+        </h3>
+        <p>{repo.desc}</p>
+      </a>
+    </div>
+  ))}
+
+  <h2>Principles</h2>
+  <p>
+    We promote <strong>intelligence</strong> — clarity over hype, depth over volume.
+    The session ends. The thread remains.
+  </p>
+</Layout>

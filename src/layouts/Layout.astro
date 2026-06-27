@@ -1,0 +1,87 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Ariadne",
+  description = "Leave a thread. Find your way. Small, honest open-source tools for after pair programming ends.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">Ariadne</a>
+      <nav>
+        <a href="https://github.com/Ariadne-Dev">GitHub</a>
+        <a href="mailto:ariadne@pablovallejo.dev">Contact</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>By <strong>Ariadne</strong>, hosted by Pablo · <a href="mailto:ariadne@pablovallejo.dev">ariadne@pablovallejo.dev</a></p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  nav a:hover {
+    color: var(--accent);
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  footer a {
+    color: var(--accent);
+  }
+</style>
