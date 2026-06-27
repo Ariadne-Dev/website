@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const exampleOutput = `Ariadne session 3 (real diff)
+────────────────────────────────────────────────────────
+
+SUMMARY
+8 files changed (+256/−41). Most changes are in docs files (8). 5 new files.
+
+RISKS
+  [~] Documentation updated
+      · README.md
+      · sessions/003-session-log-and-header.md
+      ...
+
+FILES
+  · sessions/003-session-log-and-header.md (docs, +53/−0) [new file]
+    New file with 53 lines.
+  · status/status.md (docs, +22/−35)
+    Balanced edit (+22/−35).
+
+REVIEW CHECKLIST
+  ☐ Read the summary and risk flags before diving into hunks.
+  ☐ For each changed file, ask: what behavior changed?
+  ☐ If this is a PR: would a newcomer understand *why*?`;
+---
+
+<Layout
+  title="thread — explain git diffs offline · Ariadne"
+  description="thread turns a git diff into a structured walkthrough: summary, risks, per-file notes, review checklist. Offline. No API."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow"><span class="eyebrow-dot"></span> Flagship tool · offline</p>
+      <h1>thread</h1>
+      <p class="page-lead">
+        Pair programming ends. The chat closes. You're alone with a diff again.
+        <strong>thread</strong> turns that diff into a walkthrough — summary, risk flags,
+        per-file notes, and a review checklist. No API. No cloud.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/Ariadne-Dev/thread">View on GitHub</a>
+        <a class="btn btn-ghost" href="/">← Ariadne home</a>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature">
+          <h3>Offline-first</h3>
+          <p>Pure heuristics. Works on a plane, in CI, or air-gapped.</p>
+        </div>
+        <div class="feature">
+          <h3>Educational</h3>
+          <p>Teaches review habits — doesn't replace reading the diff.</p>
+        </div>
+        <div class="feature">
+          <h3>Fast</h3>
+          <p>Instant output. Pipe from git, point at a patch file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Try it</p>
+      <h2 class="section-title">30 seconds, no local changes needed</h2>
+      <p class="section-lead">
+        Clone, install, run the bundled example — a real diff from the Ariadne notebook.
+      </p>
+
+      <pre class="code-block"><code><span class="prompt">$ </span>git clone https://github.com/Ariadne-Dev/thread.git
+<span class="prompt">$ </span>cd thread && pnpm install
+<span class="prompt">$ </span>pnpm dev explain --file examples/ariadne-session-3.patch</code></pre>
+
+      <p class="section-lead">Or on your own repo:</p>
+
+      <pre class="code-block"><code><span class="prompt">$ </span>pnpm dev explain                    <span style="opacity:0.5"># unstaged changes</span>
+<span class="prompt">$ </span>pnpm dev explain --staged           <span style="opacity:0.5"># staged</span>
+<span class="prompt">$ </span>pnpm dev explain --range main...HEAD
+<span class="prompt">$ </span>git diff HEAD~3 | pnpm dev explain</code></pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Example output</p>
+      <h2 class="section-title">What you get</h2>
+      <p class="section-lead">
+        Structured text you can read before diving into hunks — or paste into a PR description
+        with <code>--format markdown</code>.
+      </p>
+      <pre class="code-block code-block-output"><code>{exampleOutput}</code></pre>
+    </div>
+  </section>
+
+  <section class="section section-principles">
+    <div class="container">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Heuristics, not magic</h2>
+      <p class="section-lead">
+        Path patterns, line counts, keyword detection in hunks. Docs-only diffs won't false-alarm
+        on prose mentioning secrets. The default path will always work offline.
+      </p>
+      <div class="pill-row">
+        <span class="pill"><strong>MIT</strong> licensed</span>
+        <span class="pill"><strong>Node 18+</strong></span>
+        <span class="pill"><strong>text · markdown · json</strong> output</span>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  code {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
+    font-size: 0.875em;
+    color: var(--accent-soft);
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .section-principles {
+    padding-bottom: 2rem;
+  }
+</style>
