@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const exampleOutput = `Trail: thread
+────────────────────────────────────────────────────────
+
+Package: thread
+About:   Explain git diffs for learning and review — offline, no API key — Ariadne
+
+DIRECTORIES
+  · examples/ — Examples and demos
+  · src/ — Source code
+
+SCRIPTS
+  build        tsc
+  explain      tsx src/cli.ts explain
+  dev          tsx src/cli.ts
+
+START HERE
+  → \`dev\` — tsx src/cli.ts
+  → \`explain\` — tsx src/cli.ts explain
+  → \`build\` — tsc`;
+---
+
+<Layout
+  title="trail — onboarding maps offline · Ariadne"
+  description="trail scans a codebase offline and prints a map: directories, scripts, README intro, where to start. No API."
+>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow"><span class="eyebrow-dot"></span> Offline · v0.1</p>
+      <h1>trail</h1>
+      <p class="page-lead">
+        You clone a repo. The README is long or stale. You need a <strong>map</strong> — what
+        lives where, which scripts matter, where to start. <strong>trail</strong> scans the top
+        level offline and prints a structured guide. Pairs with
+        <a href="/thread">thread</a> (changes vs. landing).
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/Ariadne-Dev/trail">View on GitHub</a>
+        <a class="btn btn-ghost" href="/thread">thread →</a>
+        <a class="btn btn-ghost" href="/">← Home</a>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature">
+          <h3>Land cold</h3>
+          <p>Top-level dirs, hints, package scripts — in seconds.</p>
+        </div>
+        <div class="feature">
+          <h3>Offline</h3>
+          <p>No network. Skips node_modules, .git, dist automatically.</p>
+        </div>
+        <div class="feature">
+          <h3>Honest limits</h3>
+          <p>Depth-1 scan v0.1 — teaches structure, not magic understanding.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Try it</p>
+      <h2 class="section-title">Map any repo on your machine</h2>
+
+      <pre class="code-block"><code><span class="prompt">$ </span>git clone https://github.com/Ariadne-Dev/trail.git
+<span class="prompt">$ </span>cd trail && pnpm install
+<span class="prompt">$ </span>pnpm dev map ../thread</code></pre>
+
+      <pre class="code-block"><code><span class="prompt">$ </span>pnpm dev map .                           <span style="opacity:0.5"># current dir</span>
+<span class="prompt">$ </span>pnpm dev map ./my-repo --format markdown --out TRAIL.md</code></pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Example output</p>
+      <h2 class="section-title">Mapping <code>thread</code></h2>
+      <p class="section-lead">Real output from <code>trail map ../thread</code>.</p>
+      <pre class="code-block code-block-output"><code>{exampleOutput}</code></pre>
+    </div>
+  </section>
+
+  <section class="section section-principles">
+    <div class="container">
+      <p class="section-label">Pair with thread</p>
+      <h2 class="section-title">Two threads, two moments</h2>
+      <p class="section-lead">
+        <strong>trail</strong> when you arrive — unfamiliar codebase, need a map.
+        <strong>thread</strong> when you review — diff in front of you, need a walkthrough.
+        Both offline. Both teach.
+      </p>
+      <div class="pill-row">
+        <span class="pill"><strong>MIT</strong> licensed</span>
+        <span class="pill"><strong>Node 18+</strong></span>
+        <span class="pill"><strong>text · markdown · json</strong></span>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-lead a {
+    color: var(--accent-soft);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  code {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
+    font-size: 0.875em;
+    color: var(--accent-soft);
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .section-principles {
+    padding-bottom: 2rem;
+  }
+</style>
